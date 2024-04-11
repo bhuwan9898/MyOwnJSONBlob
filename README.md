@@ -18,5 +18,5 @@ To get started with the JSON Blob Website, follow these steps:
 - The JSON Blob Website provides a simple API to interact with the stored data. Here are the available endpoints:
 
 - GET /api/{identifier}: Retrieve the JSON data associated with the provided identifier.
-- POST /api: Create a new JSON blob with the provided data. This handles both the create property. 
+- POST /api: Create a new JSON blob with the provided data. This handles the create property. 
 - DELETE /api/{identifier}: Delete the JSON data associated with the provided identifier.
