@@ -22,7 +22,7 @@ fs.readFile('./data.json', 'utf8', (err, data) => {
 
 //gets to the main page
 app.get('/', (req, res) => {
-    const myPage = fs.readFileSync('../pages/ourBlob.html', 'utf8');
+    const myPage = fs.readFileSync('../pages/index.html', 'utf8');
     res.setHeader('Content-Type', 'text/html'); // Set Content-Type header
     res.send(myPage);
   });
