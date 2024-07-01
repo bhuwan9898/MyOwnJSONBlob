@@ -11,7 +11,7 @@ app.use(express.static('Assignment10'))
 app.use(bodyParser.json())
 
 //read the already created json file and save it to jsonData variable
-fs.readFile('./Server/data.json', 'utf8', (err, data) => {
+fs.readFile('./data.json', 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading file:', err);
       return;
@@ -22,7 +22,7 @@ fs.readFile('./Server/data.json', 'utf8', (err, data) => {
 
 //gets to the main page
 app.get('/', (req, res) => {
-    const myPage = fs.readFileSync('./pages/ourBlob.html', 'utf8');
+    const myPage = fs.readFileSync('../pages/ourBlob.html', 'utf8');
     res.setHeader('Content-Type', 'text/html'); // Set Content-Type header
     res.send(myPage);
   });
@@ -37,7 +37,7 @@ app.post('/api/json/:ID',(req,res)=>{
     };
     jsonData.push(newData);
     //console.log(jsonData);
-    fs.writeFileSync('./Server/data.json',JSON.stringify(jsonData),'utf8', (err) => {
+    fs.writeFileSync('./data.json',JSON.stringify(jsonData),'utf8', (err) => {
         if (err) {
             console.log("Error writing file:", err);
             return;
@@ -61,7 +61,7 @@ app.get('/api/json/:ID',(req,res)=>{
 app.get('/json/:ID',(req,res)=>{
     const id = parseInt(req.params.ID)
     console.log("logging on page with id:", id)
-    const myPage = fs.readFileSync('./pages/update.html', 'utf8');
+    const myPage = fs.readFileSync('../pages/update.html', 'utf8');
     const dom = new JSDOM(myPage);
     const document = dom.window.document;
     const jsonAPIData = document.getElementById("preJsonData");
@@ -84,7 +84,7 @@ app.post('/json/:ID',(req,res)=>{
     const index = jsonData.findIndex(item => item.id === id);
     jsonData[index].data = newData;
     console.log(JSON.stringify(jsonData));
-    fs.writeFileSync('./Server/data.json',JSON.stringify(jsonData),'utf8', (err) => {
+    fs.writeFileSync('./data.json',JSON.stringify(jsonData),'utf8', (err) => {
         if (err) {
             console.log("Error writing file:", err);
             return;
@@ -100,7 +100,7 @@ app.post('/json/:ID',(req,res)=>{
     const index = jsonData.findIndex(item => item.id === id);
     jsonData.splice(index, 1);
     console.log(JSON.stringify(jsonData));
-    fs.writeFileSync('./Server/data.json',JSON.stringify(jsonData),'utf8', (err) => {
+    fs.writeFileSync('./data.json',JSON.stringify(jsonData),'utf8', (err) => {
         if (err) {
             console.log("Error writing file:", err);
             return;
