@@ -20,3 +20,4 @@ To get started with the JSON Blob Website, follow these steps:
 - GET /api/{identifier}: Retrieve the JSON data associated with the provided identifier.
 - POST /api: Create a new JSON blob with the provided data. This handles the create property. 
 - DELETE /api/{identifier}: Delete the JSON data associated with the provided identifier.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/38e904c2-f575-4810-b9c2-6212c77e3cff/deploy-status)](https://app.netlify.com/sites/gentle-mousse-6cd628/deploys)
