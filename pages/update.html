@@ -31,7 +31,7 @@
     <script>
         const url = window.location.href;
         const id = url.split('/').pop();
-        let link = `http://localhost:3007/json/${id}`
+        let link = `https://blobifydata.netlify.app//json/${id}`
         document.getElementById('update').addEventListener('click',function(){
             const data = JSON.parse(document.getElementById('preJsonData').value.trim());
             axios.post(link, data,{
