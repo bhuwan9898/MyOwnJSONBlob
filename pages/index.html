@@ -45,7 +45,7 @@
     <script>
         document.getElementById('save').addEventListener('click',function(){
             let id = createUniqueID();
-            let link = `https://blobifydata.netlify.app//api/json/${id}`
+            let link = `https://blobifydata.netlify.app/api/json/${id}`
             document.getElementById('link').innerText = link;
             const data = JSON.parse(document.getElementById('jsonData').value.trim());
             axios.post(link, data,{
