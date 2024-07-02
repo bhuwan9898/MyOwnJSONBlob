@@ -16,11 +16,17 @@
             min-height: 500px; 
             width: 50%; 
         }
+        #error-display{
+          color: red;
+          display: none;
+        }
     </style>
-    
     <div class="json">
         <label for="jsonData">Enter your JSON data below:</label><br>
         <textarea id="jsonData" name="myjsonData" rows="4" cols="50"> </textarea><br>
+        <div id = "error-display">
+          Not a valid JSON
+        </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="save">
             Save 
         </button>
@@ -34,7 +40,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <p>You can access the blob directly at: <span id="link" style="color:blue"></span></p>
+              <p>You can access the blob directly at: <a id="link" style="color:blue"></a></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -43,19 +49,35 @@
         </div>
       </div>
     <script>
+       const textarea = document.getElementById('jsonData');
+       let passingData;
+       textarea.addEventListener('input', function() {
+          let textData = textarea.value.trim();
+          try {
+              let jsonData = JSON.parse(textData);
+              console.log("Valid JSON");
+              document.getElementById('error-display').style.display = 'none';
+              document.getElementById('save').disabled = false;
+              passingData = textData;
+              
+          } catch (e) {
+            document.getElementById('error-display').style.display = 'block'; 
+            document.getElementById('save').disabled = true;
+          }
+      });
         document.getElementById('save').addEventListener('click',function(){
             let id = createUniqueID();
-            let link = `https://blobifydata.netlify.app/api/json/${id}`
+            let link = `http://localhost:3007/api/json/${id}`
             document.getElementById('link').innerText = link;
-            const data = JSON.parse(document.getElementById('jsonData').value.trim());
-            axios.post(link, data,{
+            axios.post(link, passingData,{
               headers: {
                     'Content-Type': 'application/json'
                   }
             })
             .then(()=>{console.log('done');
-        })
-  });
+        })}
+)
+
         function createUniqueID() {
             // Creating a new Date object, which represents the current date and time
             const currentDate = new Date();

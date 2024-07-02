@@ -16,11 +16,18 @@
             min-height: 500px; 
             width: 50%; 
         }
+        #error-display{
+          color: red;
+          display: none;
+        }
     </style>
     
     <div class="json">
         <label for="jsonData">Edit your JSON data below:</label><br>
         <textarea id="preJsonData" name="myjsonData" rows="4" cols="50"> </textarea><br>
+        <div id = "error-display">
+            Not a valid JSON
+          </div>
         <button type="button" class="btn btn-primary" id="update">
             Update 
         </button>
@@ -29,20 +36,38 @@
         </button>
     </div>
     <script>
+      const textarea = document.getElementById('preJsonData');
+       let passingData;
+       textarea.addEventListener('input', function() {
+          let textData = textarea.value.trim();
+          try {
+              let jsonData = JSON.parse(textData);
+              console.log("Valid JSON");
+              document.getElementById('error-display').style.display = 'none';
+              document.getElementById('update').disabled = false;
+              passingData = textData;
+              
+          } catch (e) {
+            document.getElementById('error-display').style.display = 'block'; 
+            document.getElementById('update').disabled = true;
+          }
+      });
         const url = window.location.href;
         const id = url.split('/').pop();
-        let link = `https://blobifydata.netlify.app/json/${id}`
+        let link = `http://localhost:3007/json/${id}`
         document.getElementById('update').addEventListener('click',function(){
-            const data = JSON.parse(document.getElementById('preJsonData').value.trim());
-            axios.post(link, data,{
+            alert("Your data is updated successfully!")
+            axios.post(link, passingData,{
               headers: {
                     'Content-Type': 'application/json'
                   }
             })
-            .then(()=>{console.log('done');
+            .then(()=>{
+                alert("Your data is updated successfully!");
         })       
     });
         document.getElementById('delete').addEventListener('click',function(){
+            alert("Your data is deleted successfully!")
             document.getElementById('preJsonData').value = '';
             data = null;
             axios.delete(link, data,{
