@@ -67,7 +67,7 @@
       });
         document.getElementById('save').addEventListener('click',function(){
             let id = createUniqueID();
-            let link = `http://localhost:3007/api/json/${id}`
+            let link = `https://blobifydata.netlify.app/api/json/${id}`
             document.getElementById('link').innerText = link;
             axios.post(link, passingData,{
               headers: {
