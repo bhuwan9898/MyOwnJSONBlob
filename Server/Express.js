@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
   });
 
 //handles the post request for adding into the file system.
-app.post('/api/json/:ID',(req,res)=>{
+app.post('https://blobifydata.netlify.app/api/json/:ID',(req,res)=>{
     const id = parseInt(req.params.ID); 
     const data = req.body;
     const newData = {
@@ -48,7 +48,7 @@ app.post('/api/json/:ID',(req,res)=>{
   });
 
 //API route to the JSON data.
-app.get('/api/json/:ID',(req,res)=>{
+app.get('https://blobifydata.netlify.app/api/json/:ID',(req,res)=>{
     const id = parseInt(req.params.ID);
     const apiJSON = jsonData.find(item => item.id === id);
     if(!apiJSON){
@@ -58,7 +58,7 @@ app.get('/api/json/:ID',(req,res)=>{
 });
 
 //Route to the previously created json for updating and deleting.
-app.get('/json/:ID',(req,res)=>{
+app.get('https://blobifydata.netlify.app/json/:ID',(req,res)=>{
     const id = parseInt(req.params.ID)
     console.log("logging on page with id:", id)
     const myPage = fs.readFileSync('../pages/update.html', 'utf8');
@@ -77,7 +77,7 @@ app.get('/json/:ID',(req,res)=>{
 })
 
 //Handle the update post request.
-app.post('/json/:ID',(req,res)=>{
+app.post('https://blobifydata.netlify.app/json/:ID',(req,res)=>{
     const id = parseInt(req.params.ID); 
     const newData = req.body;
     console.log(JSON.stringify(jsonData));
@@ -94,7 +94,7 @@ app.post('/json/:ID',(req,res)=>{
     console.log('Updated data for ID:', id);
   });
   //Handle the delete request.
-  app.delete('/json/:ID',(req,res)=>{
+  app.delete('https://blobifydata.netlify.app/json/:ID',(req,res)=>{
     const id = parseInt(req.params.ID); 
     console.log(JSON.stringify(jsonData));
     const index = jsonData.findIndex(item => item.id === id);
