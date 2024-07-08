@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to my personal JSON Blob Website that works similarly as the well known JSON Blob website https://jsonblob.com. This platform allows users to create, store, retrieve, update, and delete JSON data through a simple API. Each piece of JSON data is assigned a unique identifier, which serves as the link to access and manipulate it.
+Welcome to my personal JSON Blob Website that works similarly as the well known JSON Blob website. This platform allows users to create, store, retrieve, update, and delete JSON data through a simple API. Each piece of JSON data is assigned a unique identifier, which serves as the link to access and manipulate it.
 
 ### Getting Started
 
